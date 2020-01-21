@@ -1,0 +1,36 @@
+<h2>User info</h2>
+
+<!-- プロフィール画像部分 -->
+<!-- ユーザー情報テーブル部分 -->
+ <table class ="table">
+ 	<tr>
+ 		<th>name</th>
+ 		<th><%= @user.name %></th>
+ 	</tr>
+ 	<tr>
+ 		<th>introduction</th>
+ 		<th><%= @user.introduction %></th>
+ 	</tr>
+</table>
+<!-- 設定ボタン部分 -->
+<div class = "row">
+  <%= button_to "ボタン", {controller: 'users', action: 'show'}, {method: :get} %>
+</div>
+
+		<a class = "new_book">
+		<!-- 以下投稿フォーム -->
+		<h2>New book</h2>
+		<!-- form_for部分 -->
+		<%= form_for(@book) do |f| %>
+
+		    <h3>タイトル</h3>
+		    <%= f.text_field :title %>
+
+		    <h3>本文</h3>
+		    <%= f.text_area :body %>
+
+		    <%= f.submit 'Create Book' %>
+	    <% end %>
+</a>
+
+
