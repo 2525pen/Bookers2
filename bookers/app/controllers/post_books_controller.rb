@@ -5,28 +5,30 @@ class BookController < ApplicationController
 	end
 
 	def new
-		＠book ＝　Book.new
+		@post ＝　Book.new
+		@post = current_user.posts.build
 	end
 	def create
-		@book = Book.new(book_params)
-		@book.user_id = current_user.id
-		if @book.save
-			redirect_to books_path
+		@post = Book.new(post_params)
+		@post.user_id = current_user.id
+		if @post.save
+			redirect_to posts_path
 		else
 			render :new
 		end
 	end
 
 	def index
-		@book = Book.all
+		@post = Book.all(params[:id]).reverse_order
 	end
 
 	def show
+		@post = Book.find(params[:id])
 	end
 
 	def destroy
-		@book = Book.find(params[:id])
-		@book.destroy
+		@post = Book.find(params[:id])
+		@post.destroy
 		redirect_to books_path
 	end
 
