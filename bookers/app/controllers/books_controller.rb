@@ -1,4 +1,9 @@
 class BookController < ApplicationController
+	before_action :authenticate_user!, only: [:new, :create, :show, :inedex, :edit, :destroy]
+
+	def top
+	end
+
 	def new
 		＠book ＝　Book.new
 	end
@@ -14,6 +19,9 @@ class BookController < ApplicationController
 
 	def index
 		@book = Book.all
+	end
+
+	def show
 	end
 
 	def destroy
