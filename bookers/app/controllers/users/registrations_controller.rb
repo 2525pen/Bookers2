@@ -3,19 +3,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # before_action :authenticate_user!
-
-  # def my_page
-
-  # end
-
-  # protected
-
-  # def after_sign_up_path_for(resource)
-  #    user_books_path
-  # end
-
-
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -58,6 +45,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def configure_permitted_parameters
     　devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   　end
+end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -78,4 +66,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
 end

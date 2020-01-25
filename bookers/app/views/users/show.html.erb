@@ -1,0 +1,14 @@
+<!-- ①ユーザーの投稿一覧
+②左上：ユーザーのプロフ（プロフ写真、名前、紹介文）
+※設定ボタンはマイページにリンク
+③左下：投稿フォーム -->
+
+マイページ
+
+<% @user.each do |user| %>
+
+	<%= user.profile_image_id %>
+	<%= user.name %>
+	<%= user.introduction %>
+
+<% end %>
