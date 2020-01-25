@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-    devise_for :users
+    devise_for :users, :controllers => {
+		:registrations => 'users/registrations',
+		:sessions => 'users/sessions',
+		:passwords => 'users/passwords'
+	}
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     root 'home#top'
     get 'home/about'
@@ -15,5 +20,6 @@ Rails.application.routes.draw do
 
     resources :books, controller: 'users_books'
     resources :users, controller: 'users_info' ,only: [:edit, :update]
+
 
 end

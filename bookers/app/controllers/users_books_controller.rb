@@ -1,14 +1,16 @@
 class UsersBooksController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @book =Book.new
     @book =current_user.books.build
   end
 
   def create
-    @book = Book.new(post_params)
+    @book = Book.new(books_params)
     @book.user_id = current_user.id
     if @book.save
-      redirect_to books_path
+      　redirect_to controller: 'users_books', action: show, id: id
     else
       render :new
   end
@@ -18,7 +20,7 @@ class UsersBooksController < ApplicationController
   end
 
   def show
-    @post = Book.find(params[:id])
+    @book = Book.find(params[:id])
   end
 
   def edit
@@ -26,6 +28,12 @@ class UsersBooksController < ApplicationController
   end
 
   def update
+    @book = Book.find(params[:id])
+    if @book.save
+       redirect_to controller: 'users_books', action: show, id: id
+    else
+      render :edit
+    end
   end
 
   def dentroy
@@ -33,4 +41,11 @@ class UsersBooksController < ApplicationController
     @book.destroy
     redirect_to books_path
   end
+
+  private
+
+  def book_params
+    params.require(:book).permit(:title, :body)
+  end
+
 end
