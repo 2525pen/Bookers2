@@ -1,0 +1,31 @@
+<h2>Users</h2>
+
+<%= render 'users/posts', book: @book %>
+
+<table>
+		<thead>
+			<tr>
+				<th>image</th>
+				<th>name</th>
+				<th></th>
+			</rt>
+		</thead>
+
+		<tbody>
+	   		<% @users.each do |user| %>
+				<tr>
+					<td>
+						<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpg' %>
+					</td>
+					<td>
+						<%= user.introduction %>
+					</td>
+					<td>
+						<%= link_to 'Show', user_path(user) %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+</table>
+
+

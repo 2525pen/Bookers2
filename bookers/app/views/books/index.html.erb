@@ -1,21 +1,32 @@
+<!-- 左上にカレントユーザーのプロフ -->
+<!-- 左下に投稿フォーム -->
+<!-- 投稿の一覧 -->
+
 <h2>Books</h2>
 
-	<div class ="table">Books</div>
-	<thead>
-	 	<tr>
-	 		<th></th>
-	 		<th>Title</th>
-	 		<th>Opinion</th>
-	 	</tr>
-	 </thead>
+<div class ="table">Books</div>
+	<table>
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Opinion</th>
+				</rt>
+			</thead>
 
-	 <tbody>
-	 	<tr>
-		 	<tb><</tb>
-		 	<tb></tb>
-		 	<tb></tb>
-		 </tr>
-		</tbody>
-
-
+			<tbody>
+		   		<% @books.each do |book| %>
+					<tr>
+						<td>
+							<%= attachment_image_tag book, :profile_image, :fill, 100, 100, format: 'jpg' %>
+						</td>
+						<td>
+							<%= link_to 'book.title', book_path(book) %>
+						</td>
+						<td>
+							<%= book.body %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+	</table>
 

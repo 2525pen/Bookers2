@@ -1,0 +1,15 @@
+<a class = "new_book">
+	<h2>New book</h2>
+	<%= form_for(book) do |f| %>
+
+	    <h3>タイトル</h3>
+	    <%= f.text_field :title %>
+
+	    <h3>本文</h3>
+	    <%= f.text_area :body %>
+
+	    <%= f.submit 'Create Book' %>
+	<% end %>
+</a>
+
+

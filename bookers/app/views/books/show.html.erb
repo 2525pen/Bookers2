@@ -1,10 +1,15 @@
+<!-- ①投稿の詳細　タイトル&ボディ
+②左上に投稿者のプロフ
+③左下に投稿フォーム -->
+
+<%= render 'books/posts', book: @post_book %>
+
 <div class ="table">Book detail</div>
-	 <tbody>
+	<tbody>
 	 	<tr>
-		 	<tb></tb>
-		 	<tb></tb>
-		 	<tb></tb>
-		 	<tb></tb>
-		 	<tb></tb>
+		 	<tb><%= attachment_image_tag @post_user, :profile_image, :fill, 100, 100, format: 'jpg' %></tb>
+		 	<tb><%= @book.title %></tb>
+		 	<tb><%= @book.body %></tb>
 		 </tr>
-		</tbody>
+	</tbody>
+	<%= link_to '@post_user.name', user_path(@post_user) %>

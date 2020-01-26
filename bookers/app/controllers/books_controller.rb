@@ -1,29 +1,30 @@
-class BookController < ApplicationController
+class BooksController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
+		@books = Book.all
 		@my_books = Book.where(current_user[:id])
-		@books = Book.all(params[:id]).reverse_order
+		@book = Book.new
 	end
 
 	def show
 		@book = Book.find(params[:id])
-		@book = Book.new
+		@post_book = Book.new
+		@post_user = @book.user
 	end
 
 	def new
 	    @book = Book.new
-	    @book = current_user.books.build
 	end
 
 	def create
-	    @book = Book.new(books_params)
+	    @book = Book.new(book_params)
 	    @book.user_id = current_user.id
 	    if @book.save
 	       flash[:notice] = "Book was successfully created."
 	       redirect_to book_path(@book)
 	    else
-	       @books = Book.all(params[:id]).reverse_order
+	       @books = Book.all
 	       render 'index'
 	    end
 	end
@@ -43,7 +44,7 @@ class BookController < ApplicationController
     end
 
 	def dentroy
-	    book = Book.find(params[:id])
+	    @book = Book.find(params[:id])
 	    book.destroy
 	    redirect_to books_path
 	end
@@ -53,5 +54,4 @@ class BookController < ApplicationController
 	def book_params
 	    params.require(:book).permit(:title, :body)
 	end
-
 end
