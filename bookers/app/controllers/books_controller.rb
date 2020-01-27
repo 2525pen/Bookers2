@@ -3,7 +3,6 @@ class BooksController < ApplicationController
 
 	def index
 		@books = Book.all
-		@my_books = Book.where(current_user[:id])
 		@book = Book.new
 	end
 
@@ -11,6 +10,7 @@ class BooksController < ApplicationController
 		@book = Book.find(params[:id])
 		@post_book = Book.new
 		@post_user = @book.user
+		@user_plofile = @book.user
 	end
 
 	def new
@@ -31,6 +31,12 @@ class BooksController < ApplicationController
 
 	def edit
 	    @book = Book.find(params[:id])
+	    @profile = User.find(params[:id])
+	    @profile_user_id = current_user.id
+	    if @book.user.id == current_user.id
+	    else
+	    	redirect_to books_path
+	    end
 	end
 
     def update
@@ -41,11 +47,18 @@ class BooksController < ApplicationController
     	else
       		render 'edit'
       	end
+
+      	@profile = User.find(params[:id])
+      	if @profile.save
+      		flash[:notice] = "You have updated user successfully."
+      	else
+      		render 'edit'
+      	end
     end
 
-	def dentroy
+	def destroy
 	    @book = Book.find(params[:id])
-	    book.destroy
+	    @book.destroy
 	    redirect_to books_path
 	end
 

@@ -1,4 +1,14 @@
-<a class = "new_book">
+<div class = "new_book">
+	<% if @book.errors.any? %>
+    <div class = "alert alert-warning">
+        <ul>
+            <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
 	<h2>New book</h2>
 	<%= form_for(book) do |f| %>
 
@@ -10,5 +20,5 @@
 
 	    <%= f.submit 'Create Book' %>
 	<% end %>
-</a>
+</div>
 
