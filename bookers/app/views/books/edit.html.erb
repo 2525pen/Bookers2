@@ -1,4 +1,14 @@
 <h2>Editing Book</h2>
+<% if @book.errors.any? %>
+	<%= pluralize(@book.errors.count,"error") %>
+    <div class = "alert alert-warning">
+        <ul>
+            <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
 	<%= form_for(@book) do |b| %>
 		<div class = "form-group">
 
@@ -18,7 +28,7 @@
 		</div>
 	<% end %>
 		<div class = "link-group">
-			<%= link_to "Show", :back %>
+			<%= link_to "Show", @book %>
 			|
 			<%= link_to "Back", books_path %>
 		</div>

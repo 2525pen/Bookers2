@@ -31,29 +31,20 @@ class BooksController < ApplicationController
 
 	def edit
 	    @book = Book.find(params[:id])
-	    @profile = User.find(params[:id])
-	    @profile_user_id = current_user.id
-	    if @book.user.id == current_user.id
-	    else
+	    if @book.user.id != current_user.id
 	    	redirect_to books_path
 	    end
 	end
 
     def update
     	@book = Book.find(params[:id])
-    	if @book.save
+    	if @book.update(book_params)
     	   flash[:notice] = "Book was successfully created."
        	   redirect_to book_path(@book)
     	else
       		render 'edit'
       	end
 
-      	@profile = User.find(params[:id])
-      	if @profile.save
-      		flash[:notice] = "You have updated user successfully."
-      	else
-      		render 'edit'
-      	end
     end
 
 	def destroy

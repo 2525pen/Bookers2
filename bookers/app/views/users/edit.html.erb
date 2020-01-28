@@ -1,33 +1,40 @@
-	<% if @user.errors.any? %>
-    <div class = "alert alert-warning">
-        <ul>
-            <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
+<div class="body">
+	<div class="container">
+	<h2>User info</h2>
+		<% if @user.errors.any? %>
+			<%= pluralize(@user.errors.count,"error") %>
 
-	<%= form_for(@user) do |f| %>
+	    <div class = "alert alert-warning">
+	        <ul>
+	            <% @user.errors.full_messages.each do |message| %>
+	                <li><%= message %></li>
+	            <% end %>
+	        </ul>
+	    </div>
+	<% end %>
 
-		<div class = "form-group">
+		<%= form_for(@user) do |f| %>
 
-			<div class="field">
-		    	<label for="user_name">Name</label>
-		    	<%= f.text_field :name %>
-		    </div>
+			<div class = "form-group">
 
-			<div class="field">
-		    	<label for="user_name">Image</label>
-				<%= f.attachment_field :profile_image %>
+				<div class="field">
+			    	<label for="user_name">Name</label>
+			    	<%= f.text_field :name %>
+			    </div>
+
+				<div class="field">
+			    	<label for="user_name">Image</label>
+					<%= f.attachment_field :profile_image %>
+				</div>
+
+				<div class="field">
+			    	<label for="user_name">Introduction</label>
+			    	<%= f.text_field :introduction %>
+			    </div>
+			    <div class="field">
+			    	<%= f.submit "Update User" %>
+			    </div>
 			</div>
-
-			<div class="field">
-		    	<label for="user_name">Introduction</label>
-		    	<%= f.text_field :introduction %>
-		    </div>
-		    <div class="field">
-		    	<%= f.submit "Update User" %>
-		    </div>
-		</div>
-    <% end %>
+	    <% end %>
+	</div>
+</div>

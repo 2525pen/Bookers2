@@ -1,35 +1,38 @@
-<div class="container">
-	<div class="row">
-		<div class="col-xs-4">
-			<%= render 'books/profile' , user: @user %>
-			<%= render 'users/posts', book: @book %>
-		</div>
-		<div class="col-xs-8">
-			<table>
-					<thead>
-						<tr>
-							<th>image</th>
-							<th>title</th>
-							<th>Opinion</th>
-						</rt>
-					</thead>
-
-					<tbody>
+<div class="body">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-3">
+				<%= render 'books/profile' , user: @user %>
+				<%= render 'users/posts', book: @book %>
+			</div>
+			<div class="col-xs-9">
+				<h1>Books</h1>
+				<table class="table table-hover table-inverse">
+						<thead>
 							<tr>
-								<% @users_books.each do |book| %>
-									<td>
-										<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.png", size: '40x40' %>
-									</td>
-									<td>
-										<%= link_to book.title, book_path(book) %>
-									</td>
-									<td>
-										<%= book.body %>
-									</td>
+								<th>image</th>
+								<th>title</th>
+								<th>Opinion</th>
+							</rt>
+						</thead>
+
+						<tbody>
+								<tr>
+									<% @users_books.each do |book| %>
+										<td>
+											<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.png", size: '40x40' %>
+										</td>
+										<td>
+											<%= link_to book.title, book_path(book) %>
+										</td>
+										<td>
+											<%= book.body %>
+										</td>
+								</tr>
 								<% end %>
-							</tr>
-					</tbody>
-			</table>
+						</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
